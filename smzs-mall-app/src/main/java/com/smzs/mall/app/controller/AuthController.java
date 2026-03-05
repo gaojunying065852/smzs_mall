@@ -1,7 +1,7 @@
 package com.smzs.mall.app.controller;
 
 import com.smzs.mall.common.Result;
-import com.smzs.mall.entity.User;
+import com.smzs.mall.entity.MiniProgramCustomer;
 import com.smzs.mall.app.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +32,7 @@ public class AuthController {
         }
         
         try {
-            User user = authService.loginByWxCode(code, nickName, avatarUrl);
+            MiniProgramCustomer user = authService.loginByWxCode(code, nickName, avatarUrl);
             
             // 生成token（简化处理，实际应该使用JWT）
             String token = "Bearer " + System.currentTimeMillis(); // 模拟token

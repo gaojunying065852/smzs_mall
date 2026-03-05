@@ -2,6 +2,7 @@ package com.smzs.mall.entity;
 
 import lombok.Data;
 import javax.persistence.*;
+import com.smzs.mall.entity.MiniProgramCustomer;
 
 @Data
 @Entity
@@ -9,7 +10,7 @@ import javax.persistence.*;
 public class Address extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private MiniProgramCustomer customer;
 
     @Column(nullable = false)
     private String name;

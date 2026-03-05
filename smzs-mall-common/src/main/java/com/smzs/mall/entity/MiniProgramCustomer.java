@@ -4,10 +4,14 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * 小程序客户实体
+ * 专门用于微信小程序用户管理
+ */
 @Data
 @Entity
-@Table(name = "users")
-public class User extends BaseEntity {
+@Table(name = "app_customer")
+public class MiniProgramCustomer extends BaseEntity {
     @Column(unique = true)
     private String phone;
     
@@ -20,7 +24,7 @@ public class User extends BaseEntity {
 
     private Integer gender;
 
-    private java.time.LocalDateTime birthday;
+    private LocalDateTime birthday;
 
     private Integer status;
 

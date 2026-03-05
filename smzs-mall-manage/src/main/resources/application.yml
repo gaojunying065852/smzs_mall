@@ -5,9 +5,9 @@ spring:
   application:
     name: smzs-mall-manage
   datasource:
-    url: jdbc:postgresql://localhost:5432/smzs_mall
-    username: postgres
-    password: 123456
+    url: jdbc:postgresql://43.99.13.40:5432/smzs
+    username: gaojunying
+    password: gao0812
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
