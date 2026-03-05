@@ -25,12 +25,24 @@ public class JwtUtil {
         claims.put("userId", userId);
         claims.put("phone", phone);
         
+        // 获取过期时间，如果为空则使用默认值24小时
+        Long expiration = jwtConfig.getExpiration();
+        if (expiration == null) {
+            expiration = 86400000L; // 24小时默认值
+        }
+        
+        // 获取密钥，如果为空则使用默认值
+        String secret = jwtConfig.getSecret();
+        if (secret == null || secret.isEmpty()) {
+            secret = "smzs-mall-default-secret-key";
+        }
+        
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(phone)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + jwtConfig.getExpiration()))
-                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret())
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
     
@@ -38,8 +50,14 @@ public class JwtUtil {
      * 解析JWT token
      */
     public Claims parseToken(String token) {
+        // 获取密钥，如果为空则使用默认值
+        String secret = jwtConfig.getSecret();
+        if (secret == null || secret.isEmpty()) {
+            secret = "smzs-mall-default-secret-key";
+        }
+        
         return Jwts.parser()
-                .setSigningKey(jwtConfig.getSecret())
+                .setSigningKey(secret)
                 .parseClaimsJws(token)
                 .getBody();
     }

@@ -31,6 +31,11 @@ management:
     defaults:
       enabled: true
 
+# JWT配置
+jwt:
+  secret: smzs-mall-secret-key-2026
+  expiration: 86400000  # 24小时，单位毫秒
+
 logging:
   level:
     com.smzs.mall: debug
