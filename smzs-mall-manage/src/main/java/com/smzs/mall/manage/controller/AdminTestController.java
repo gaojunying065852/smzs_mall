@@ -34,7 +34,7 @@ public class AdminTestController {
             }
             
             // 创建初始管理员账户
-            adminAuthService.createAdminUser("13800138000", "admin123", "系统管理员");
+            adminAuthService.createAdminUser("admin", "admin123", "系统管理员");
             return Result.success("管理员账户创建成功");
             
         } catch (Exception e) {

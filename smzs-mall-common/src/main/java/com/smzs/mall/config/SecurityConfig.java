@@ -21,6 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/categories").permitAll()
                 .antMatchers("/api/products/**").permitAll()
                 .antMatchers("/api/upload").permitAll()
+                // 排除管理后台的路径，让AdminSecurityConfig处理
+                .antMatchers("/api/admin/**").permitAll()
                 .anyRequest().authenticated()
             .and()
             .cors();
