@@ -25,17 +25,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     /**
      * 查找推荐商品
      */
-    @Query("SELECT p FROM Product p WHERE p.isRecommend = true AND p.status = 1 ORDER BY p.createdAt DESC")
+    @Query("SELECT p FROM Product p WHERE p.isRecommend = true AND p.status = 1 ORDER BY p.createAt DESC")
     List<Product> findRecommendProducts();
     
     /**
      * 查找热门商品
      */
-    @Query("SELECT p FROM Product p WHERE p.isHot = true AND p.status = 1 ORDER BY p.createdAt DESC")
+    @Query("SELECT p FROM Product p WHERE p.isHot = true AND p.status = 1 ORDER BY p.createAt DESC")
     List<Product> findHotProducts();
     
     /**
      * 根据状态查找商品
      */
-    List<Product> findByStatusOrderByCreatedAtDesc(Integer status);
+    List<Product> findByStatusOrderByCreateAtDesc(Integer status);
 }
