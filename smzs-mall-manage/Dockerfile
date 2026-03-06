@@ -1,22 +1,4 @@
-# 多阶段构建 - 构建阶段
-FROM docker.m.daocloud.io/library/maven:3.8.4-amazoncorretto-8 AS builder
-
-# 设置工作目录
-WORKDIR /build
-
-# 复制整个项目
-COPY . .
-
-# 下载依赖
-RUN mvn dependency:go-offline -B
-
-# 编译项目
-RUN mvn clean package -DskipTests -pl smzs-mall-manage -am
-
-# 编译项目
-RUN mvn clean package -DskipTests -pl smzs-mall-manage -am
-
-# 运行阶段
+# 单阶段运行镜像 - 使用预编译的JAR文件
 FROM docker.m.daocloud.io/amazoncorretto:8-alpine
 
 # 设置时区
@@ -26,8 +8,8 @@ RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # 创建应用目录
 WORKDIR /app
 
-# 从构建阶段复制jar包
-COPY --from=builder /build/smzs-mall-manage/target/*.jar app.jar
+# 复制预编译的JAR文件（需要在构建时提供）
+COPY target/*.jar app.jar
 
 # 暴露端口
 EXPOSE 8081
