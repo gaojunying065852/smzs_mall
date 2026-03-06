@@ -1,5 +1,5 @@
 # 多阶段构建 - 构建阶段
-FROM docker.m.daocloud.io/library/maven:3.8.4-openjdk-8 AS builder
+FROM docker.m.daocloud.io/library/maven:3.8.4-amazoncorretto-8 AS builder
 
 # 设置工作目录
 WORKDIR /build
@@ -20,7 +20,7 @@ COPY smzs-mall-manage/src ./smzs-mall-manage/src
 RUN mvn clean package -DskipTests -pl smzs-mall-manage -am
 
 # 运行阶段
-FROM docker.m.daocloud.io/library/openjdk:8-jdk
+FROM docker.m.daocloud.io/amazoncorretto:8-alpine
 
 # 设置时区
 ENV TZ=Asia/Shanghai
