@@ -78,14 +78,6 @@ smzs-mall-parent/                  # 父项目
 - Maven 3.6+
 - Docker & Docker Compose (推荐)
 
-### 2. 一键部署（推荐）
-
-**Linux/macOS**:
-```bash
-chmod +x deploy.sh
-./deploy.sh
-```
-
 **Windows**:
 ```cmd
 deploy.bat
