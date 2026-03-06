@@ -20,7 +20,7 @@ COPY smzs-mall-manage/src ./smzs-mall-manage/src
 RUN mvn clean package -DskipTests -pl smzs-mall-manage -am
 
 # 运行阶段
-FROM eclipse-temurin:8-jdk
+FROM registry.cn-hangzhou.aliyuncs.com/acs/openjdk:8-jdk
 
 # 设置时区
 ENV TZ=Asia/Shanghai
