@@ -4,17 +4,14 @@ FROM docker.m.daocloud.io/library/maven:3.8.4-amazoncorretto-8 AS builder
 # 设置工作目录
 WORKDIR /build
 
-# 复制pom文件
-COPY pom.xml .
-COPY smzs-mall-common/pom.xml ./smzs-mall-common/
-COPY smzs-mall-app/pom.xml ./smzs-mall-app/
+# 复制整个项目
+COPY . .
 
 # 下载依赖
 RUN mvn dependency:go-offline -B
 
-# 复制源代码
-COPY smzs-mall-common/src ./smzs-mall-common/src
-COPY smzs-mall-app/src ./smzs-mall-app/src
+# 编译项目
+RUN mvn clean package -DskipTests -pl smzs-mall-app -am
 
 # 编译项目
 RUN mvn clean package -DskipTests -pl smzs-mall-app -am
